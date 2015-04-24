@@ -1,0 +1,40 @@
+<section class="todoapp">
+  <header class="header">
+    <h1>todos</h1>
+    {{input 
+        type="text" 
+        class="new-todo" 
+        placeholder="What needs to be done?"
+        value=newTitle
+        action="createTodo"
+     }}
+  </header>
+  <section class="main">
+    {{outlet}}
+    {{input type="checkbox" class="toggle-all" checked=allAreDone}}
+  </section>
+  <footer class="footer">
+    <span class="todo-count">
+      <strong>{{remaining}}</strong> {{inflection}} left
+    </span>
+    <ul class="filters">
+      <li>
+        {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+      </li>
+    </ul>
+    {{#if hasCompleted}}
+        <button class="clear-completed" {{action "clearCompleted"}}>
+          Clear completed ({{completed}})
+        </button>
+    {{/if}}
+  </footer>
+</section>
+<footer class="info">
+  <p>Double-click to edit a todo</p>
+</footer>
